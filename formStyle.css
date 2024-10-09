@@ -1,0 +1,32 @@
+.hidden {
+    display: none; /* הסתרת האלמנט */
+}
+
+#formContainer {
+    position: fixed; /* עמידה על האלמנטים */
+    top: 0;
+    right: 0;
+    width: 300px; /* רוחב הטופס */
+    height: 100%; /* גובה מלא */
+    background-color: rgba(255, 255, 255, 0.9); /* צבע רקע עם שקיפות */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); /* צל */
+    padding: 20px; /* ריפוד פנימי */
+    z-index: 1000; /* להיות מעל שאר האלמנטים */
+}
+
+.form-popup {
+    display: flex;
+    flex-direction: column; /* סידור כלפי מטה */
+}
+
+.close {
+    cursor: pointer; /* עכבר הופך ליד */
+    font-size: 24px; /* גודל האיקס */
+    align-self: flex-end; /* מיקום באוויר */
+}
+
+form {
+    display: flex;
+    flex-direction: column; /* סידור כלפי מטה */
+    gap: 10px; /* רווחים בין השדות */
+}

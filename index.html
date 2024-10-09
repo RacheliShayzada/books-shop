@@ -1,17 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="formStyle.css">
 </head>
-<body>
-    
 
-    <script src="model.js"></script>
-    <script src="controller.js"></script>
-    <script src="view.js"></script>
-    <script src="main.js"></script>
+<body onload="onLoad()">
+    <div class="container">
+        <div class="header">
+            <h1 class="logo">BookShop ERP</h1>
+        </div>
+        <div class="ruler">
+            <div class="ruler-inner"><button class="ruler-button" onclick="openForm()">+ New Book</button></div>
+            <div class="ruler-inner">
+                <button class="ruler-button" onclick="loadData()">Load Data</button>
+                <select id="lang">
+                    <option value="English">English</option>
+                    <option value="Hebrew">Hebrew</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="book-list-grid">
+                <div class="grid-header">Id</div>
+                <div class="grid-header">Title</div>
+                <div class="grid-header">Price</div>
+                <div class="grid-header">Action</div>
+            </div> 
+            <div class="sidebar">
+                <p>nothing to see in hear</p>
+            </div>               
+        </div>
+
+        <div id="formContainer" class="hidden">
+            <div class="form-popup">
+                <span class="close" id="closeForm" onclick="closeForm()">&times;</span>
+                <h2>Add New Book</h2>
+                <form id="bookForm" onsubmit="addBook(event)">
+                    <input type="text" id="title" placeholder="Title" required>
+                    <input type="number" id="price" placeholder="Price" required>
+                    <input type="url" id="image" placeholder="Image URL" required>
+                    <button type="submit">Add Book</button>
+                </form>
+            </div>
+        </div>
+
+        <script src="model.js"></script>
+        <script src="controller.js"></script>
+        <script src="formController.js"></script>
+        <script src="view.js"></script>
+        <script src="main.js"></script>
 </body>
+
 </html>
