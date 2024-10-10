@@ -15,7 +15,7 @@
             <h1 class="logo">BookShop ERP</h1>
         </div>
         <div class="ruler">
-            <div class="ruler-inner"><button class="ruler-button" onclick="openForm()">+ New Book</button></div>
+            <div class="ruler-inner"><button class="ruler-button" onclick="openForm(Gadd)">+ New Book</button></div>
             <div class="ruler-inner">
                 <button class="ruler-button" onclick="loadData()">Load Data</button>
                 <select id="lang">
@@ -26,27 +26,23 @@
         </div>
 
         <div class="content">
-            <div class="book-list-grid">
-                <div class="grid-header">Id</div>
-                <div class="grid-header">Title</div>
-                <div class="grid-header">Price</div>
-                <div class="grid-header">Action</div>
-            </div> 
+            <div class="main-content">
+                <div class="book-list-grid"></div>
+                <div class="buttons-ruler">
+                    <button class="move-page-button" onclick="decreaseCurrentPage()">⭠ Prev</button>
+                    <div class="pages-buttons"></div>
+                    <button class="move-page-button" onclick="increaseCurrentPage()">Next ⭢</button>
+                </div>
+            </div>
             <div class="sidebar">
                 <p>nothing to see in hear</p>
-            </div>               
+            </div>
         </div>
 
         <div id="formContainer" class="hidden">
             <div class="form-popup">
                 <span class="close" id="closeForm" onclick="closeForm()">&times;</span>
-                <h2>Add New Book</h2>
-                <form id="bookForm" onsubmit="addBook(event)">
-                    <input type="text" id="title" placeholder="Title" required>
-                    <input type="number" id="price" placeholder="Price" required>
-                    <input type="url" id="image" placeholder="Image URL" required>
-                    <button type="submit">Add Book</button>
-                </form>
+                <div class="form-container"></div>
             </div>
         </div>
 
