@@ -30,3 +30,16 @@ form {
     flex-direction: column; /* סידור כלפי מטה */
     gap: 10px; /* רווחים בין השדות */
 }
+
+
+.buttons-ruler{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; 
+}
+
+.pages-buttons{
+    display: flex;
+    gap: 5px;
+}
+

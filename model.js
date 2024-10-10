@@ -1,4 +1,4 @@
-const Gbooks = [
+let Gbooks = [
     { id: 1, title: "The Great Gatsby", price: 10.99, image: "https://example.com/images/great-gatsby.jpg" },
     { id: 2, title: "To Kill a Mockingbird", price: 8.99, image: "https://example.com/images/to-kill-a-mockingbird.jpg" },
     { id: 3, title: "1984", price: 12.99, image: "https://example.com/images/1984.jpg" },
@@ -21,7 +21,16 @@ const Gbooks = [
     { id: 20, title: "The Bell Jar", price: 11.99, image: "https://example.com/images/bell-jar.jpg" }
 ];
 
-
+var GbooksList;
 var Gcounter = 0;
+var GbooksCounter;
+var Gpages;
+var GcurrentPage;
+
+var Gadd = 'Add';
+var Gupdate = 'Update';
+
+var GsortByPrice = 0;
+var GsortByTitle = 0;
 
 
