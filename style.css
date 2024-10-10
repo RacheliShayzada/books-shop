@@ -33,7 +33,7 @@
 .book-list-grid {
     display: grid;
     grid-template-columns: 1fr 3fr 2fr 2fr; /* עמודות לגודל קבוע */
-    gap: 10px; /* רווח בין הפריטים */
+    gap: 2px; /* רווח בין הפריטים */
     margin: 20px;
     flex-grow: 0.6;
 }
@@ -41,11 +41,31 @@
 .grid-header {
     font-weight: bold;
     text-align: left;
+    background-color: #ddd;
+    padding:5px;
 }
 
 .grid-item {
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    background-color: white;
+}
+
+.grid-button{
+    background-color: white;
+    color: black;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.title-item:hover{
+    color:green;
+    cursor: pointer;
 }
 
 @media (max-width: 600px) {
@@ -63,7 +83,6 @@
 
 .sidebar {
     border-left: 1px solid #ddd;
-    padding: 20px;
     text-align: center;
     min-width: 200px;
     background-color: white;
@@ -71,12 +90,14 @@
 }
 
 .sidebar img.book-image {
-    max-width: 100%;
+    max-width: 80%;
     height: auto;
     margin-bottom: 10px;
+    float: left;
+    margin-left: 15px;
 }
 
-.rate-section {
+.amount-section {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,16 +105,9 @@
 
 }
 
-.rate-section button {
-    width: 30px;
-    height: 30px;
-    font-size: 18px;
-}
-
 .sider-button{
     background-color: purple;
     border: none;
-    padding: 10px 20px;
     text-align: center;
     font-size: 16px;
     margin: 5px;
@@ -103,12 +117,65 @@
 }
 
 #counter{
-    background-color: rgb(232, 228, 228);
     flex-grow: 0.4;
     margin: 0%;
+}
+
+.page-button{
+    background-color: rgb(244, 228, 244);
+    color: black;
+    border: none;
+    text-align: center;
+    font-size: 17px;
+    margin: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
 .active-page{
     color: white;
     background-color: blueviolet;
 }
+
+.move-page-button{
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    text-align: center;
+    font-size: 17px;
+    margin: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 20%;
+}
+
+.read:hover{
+    color: orange;
+}
+
+.update:hover{
+    color: blue;
+}
+
+.delete:hover{
+    color: red;
+}
+
+/* sidebar style */
+.sidbar-title{
+    background-color: #ddd;
+    width: 100%;
+    margin-top: 0%;
+    padding:25px 5px;
+}
+
+.book-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+}
+
+.image-div{
+    max-width: 200px;
+}
+

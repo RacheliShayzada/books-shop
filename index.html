@@ -18,9 +18,9 @@
             <div class="ruler-inner"><button class="ruler-button" onclick="openForm(Gadd)">+ New Book</button></div>
             <div class="ruler-inner">
                 <button class="ruler-button" onclick="loadData()">Load Data</button>
-                <select id="lang">
-                    <option value="English">English</option>
-                    <option value="Hebrew">Hebrew</option>
+                <select id="lang" onchange="changeLanguage(this)">
+                    <option value="en">English</option>
+                    <option value="he">Hebrew</option>
                 </select>
             </div>
         </div>

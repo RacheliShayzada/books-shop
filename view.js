@@ -4,14 +4,20 @@ function renderBookDetailsToSidebar(book, index) {
     Gcounter = 1;
     if (book) {
         sidebar.innerHTML = `
-            <h3>${book.title}</h3>
+            <h3 class="sidbar-title">${book.title}</h3>
+            <div class="book-section">
+            <div class="image-div">
             <img src="${book.image}" alt="${book.title}" class="book-image">
-            <p class="sider-price">Price: ${book.price.toFixed(2)} $</p>
-            <div class="rate-section">
-                <span>Amount: </span>
+            </div>
+            <div class="book-info">
+            <p class="sider-price"><p class="sider-price-in">${Gdictionary[Glanguage]["price"]}:</p> ${book.price.toFixed(2)} $</p>
+            <div class="amount-section">
+                <span>${Gdictionary[Glanguage]["amount"]}: </span>
                 <button class="sider-button" onclick="decreaseCounter(${book.id},${index})">-</button>
                 <span id="counter">${Gcounter}</span>
                 <button class="sider-button" onclick="increaseCounter(${book.id},${index})">+</button>
+            </div>
+            </div>
             </div>
         `;
     } else {
@@ -23,22 +29,22 @@ function renderBookDetailsToSidebar(book, index) {
 function renderBook(book, index) {
     return `
         <div class="grid-item">${book.id}</div>
-        <div class="grid-item" onclick="selectBook(${index})">${book.title}</div>
+        <div class="grid-item title-item" onclick="selectBook(${index})">${book.title}</div>
         <div class="grid-item" id="bookPrice">${book.price.toFixed(2)} $</div>
         <div class="grid-item">
-            <button onclick="selectBook(${index})">Read</button>
-            <button onclick="openForm('${Gupdate}', ${getRelativendex(index)})">Update</button>
-            <button onclick="deleteBook(${index})">🗑</button>
+            <button class="grid-button read" onclick="selectBook(${index})">Read</button>
+            <button class="grid-button update" onclick="openForm('${Gupdate}', ${getRelativendex(index)})">Update</button>
+            <button class="grid-button delete" onclick="deleteBook(${index})">🗑</button>
         </div>
     `;
 }
 
 // פונקציה לרינדור רשימת ספרים
 function renderBooksList(books) {
-    let gridHTML = `<div class="grid-header">Id</div>
-                    <div class="grid-header" onclick="toggleSortByTitle()">Title ${GsortByTitle?"▲":"▼"}</div>
-                    <div class="grid-header" onclick="toggleSortByPrice()">Price ${GsortByPrice?"▲":"▼"}</div>
-                    <div class="grid-header">Action</div>`;
+    let gridHTML = `<div class="grid-header">${Gdictionary[Glanguage]['id']}</div>
+                    <div class="grid-header" onclick="toggleSortByTitle()">${Gdictionary[Glanguage]['title']+(GsortByTitle ? "▲" : "▼")}</div>
+                    <div class="grid-header" onclick="toggleSortByPrice()">${Gdictionary[Glanguage]['price']+(GsortByPrice ? "▲" : "▼")}</div>
+                    <div class="grid-header">${Gdictionary[Glanguage]['action']}</div>`;
 
     books.forEach((book, index) => {
         gridHTML += renderBook(book, index);
@@ -72,23 +78,57 @@ function renderForm(mode, bookIndex) {
     let book = getBookByIndex(bookIndex);
     let formHTML = `
     <h2>${mode} Book</h2>
+    <h2>-------------------</h2>
     <form id="bookForm" onsubmit="${mode === Gadd ? "addBook(event)" : `updateBook(event, ${bookIndex})`}">
-        <label for="id">Book id:</label>
+        <label for="id">${Gdictionary[Glanguage]["bookId"]}:</label>
         <input type="number" id="id" value="${book ? book.id : 0}" placeholder="Book id" required>
 
-        <label for="title">Title:</label>
+        <label for="title">${Gdictionary[Glanguage]["title"]}:</label>
         <input type="text" id="title" value="${book ? book.title : ""}" placeholder="Title" required>
 
-        <label for="price">Price:</label>
+        <label for="price">${Gdictionary[Glanguage]["price"]}:</label>
         <input type="number" step="0.01" id="price" value="${book ? book.price.toFixed(2) : 0}" placeholder="Price" required>
 
-        <label for="image">Image URL:</label>
+        <label for="image">${Gdictionary[Glanguage]["imageUrl"]}:</label>
         <input type="url" id="image" value="${book ? book.image : ""}" placeholedr="Image URL" required>
 
-        <button type="submit">${mode} Book</button>
+        <button type="submit" class="submit-button">${mode} Book</button>
     </form>
 `;
     document.querySelector('.form-container').innerHTML = formHTML;
 }
 
+
+function renderLanguages(){
+    document.getElementsByClassName('ruler-button')[0].innerHTML = Gdictionary[Glanguage]['newBook'];
+    document.getElementsByClassName('ruler-button')[1].innerHTML = Gdictionary[Glanguage]['loadData'];
+    document.getElementsByClassName('grid-header')[0].innerHTML = Gdictionary[Glanguage]['id'];
+    document.getElementsByClassName('grid-header')[1].innerHTML = Gdictionary[Glanguage]['title']+(GsortByTitle ? "▲" : "▼");
+    document.getElementsByClassName('grid-header')[2].innerHTML = Gdictionary[Glanguage]['price']+(GsortByPrice ? "▲" : "▼");
+    document.getElementsByClassName('grid-header')[3].innerHTML = Gdictionary[Glanguage]['action'];
+    document.getElementsByClassName('move-page-button')[0].innerHTML = Gdictionary[Glanguage]['previousPage'];
+    document.getElementsByClassName('move-page-button')[1].innerHTML = Gdictionary[Glanguage]['nextPage'];
+    let sider = document.getElementsByClassName('sider-price-in')[0];
+    if(sider) sider.innerHTML = Gdictionary[Glanguage]['price']+(':');
+    document.getElementsByTagName('span')[0].innerHTML = Gdictionary[Glanguage]['amount'];
+
+    const language = Glanguage;
+    console.log(language);
+    const body = document.body;
+    const bookListSection = document.querySelector('.main-content');
+    const bookDetailsSection = document.querySelector('.sidebar');
+    if (language === 'he') {
+        
+        body.setAttribute('dir', 'rtl');
+        body.style.direction = 'rtl';
+        bookDetailsSection.style.float = 'left';
+        bookListSection.style.float = 'right';
+
+    } else {
+        body.setAttribute('dir', 'ltr');
+        body.style.direction = 'ltr';
+        bookDetailsSection.style.float = 'right';
+        bookListSection.style.float = 'left';
+    }
+}
 

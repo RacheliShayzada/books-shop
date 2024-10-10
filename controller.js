@@ -85,6 +85,7 @@ function deleteBook(index) {
 
 
 function selectBook(index) {
+    index = getRelativendex(index);
     let books = localStorage.getItem('books');
     let book = JSON.parse(books)[index];
     renderBookDetailsToSidebar(book, index);
@@ -192,5 +193,11 @@ function toggleSortByTitle() {
     }
     GsortByTitle =!GsortByTitle;
     renderBooksList(getCurenntBooks());
+}
+
+//language
+function changeLanguage(select) {
+    Glanguage = select.value;
+    renderLanguages();
 }
 
